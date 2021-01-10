@@ -6,5 +6,5 @@ WORKDIR=$(pwd)
 TIMESTAMP=$(date "+%Y/%m/%d-%H:%M:%S")
 CALLER=$(ps $PPID | tail -n 1 | awk '{c="";for(i=5;i<=NF;i++) c=c $i" "; print c}')
 
-echo "[$TIMESTAMP] ($CALLER) work=$WORKDIR cmd=$SCRIPT_PATH $*"
+echo "[$TIMESTAMP] caller=$CALLER, work=$WORKDIR, cmd=$SCRIPT_PATH $*" | tee -a /tmp/hook.log
 $ORG_SCRIPT $*
